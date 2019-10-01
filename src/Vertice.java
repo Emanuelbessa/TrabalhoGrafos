@@ -1,17 +1,17 @@
 import java.util.Objects;
 
 public class Vertice {
-    public String nome;
+    public String nomeVertice;
 
-    public String getNome() {
-        return nome;
+    public String getNomeVertice() {
+        return nomeVertice;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeVertice(String nomeVertice) {
+        this.nomeVertice = nomeVertice;
     }
 
     public Boolean equals(final Vertice outroVertice) {
-        return Objects.equals(this.nome, outroVertice.nome);
+        return Objects.equals(this.nomeVertice, outroVertice.nomeVertice);
     }
 }
