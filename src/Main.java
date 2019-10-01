@@ -22,6 +22,9 @@ public class Main {
                     System.out.print("Digite o nome do vértice a ser excluído: ");
                     graph.removeVertice(graph.getVerticePorNome(scanner.next()));
                     break;
+                case 6:
+                    System.out.print("Digite o nome do vértice que deseja conhecer os adjacentes: ");
+                    graph.getVerticesAdjacentes(graph.getVerticePorNome(scanner.next()));
             }
         }
     }

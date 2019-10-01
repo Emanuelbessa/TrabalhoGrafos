@@ -5,6 +5,12 @@ public class Aresta {
     Vertice vFinal;
     String nomeAresta;
 
+    Aresta(Vertice vInicial, Vertice vFinal, String nomeAresta){
+        this.vInicial = vInicial;
+        this.vFinal = vFinal;
+        this.nomeAresta = nomeAresta;
+    }
+
     Vertice getVInicial() {
         return vInicial;
     }
