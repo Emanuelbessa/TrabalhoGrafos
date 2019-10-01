@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.StringJoiner;
 
 public class Grafo {
     private ArrayList<Vertice> vertice;
@@ -11,11 +12,11 @@ public class Grafo {
         this.dirigido = dirigido;
     }
 
-    public void addVertice(final Vertice vertice) {
+    void addVertice(final Vertice vertice) {
         this.vertice.add(vertice);
     }
 
-    public void removeVertice(final Vertice vertice) {
+    void removeVertice(final Vertice vertice) {
         if (!this.vertice.contains(vertice)) {
             System.err.println("Vértice não existe!");
         }
@@ -32,16 +33,16 @@ public class Grafo {
         this.vertice.remove(vertice);
     }
 
-    public Vertice getVerticePorNome(String nomeVertice) {
+    Vertice getVerticePorNome(String nomeVertice) {
         Vertice vNome = null;
         for (Vertice v : this.vertice) {
-            if(v.getNomeVertice().equalsIgnoreCase(nomeVertice))
+            if (v.getNomeVertice().equalsIgnoreCase(nomeVertice))
                 vNome = v;
         }
         return vNome;
     }
 
-    public ArrayList<Vertice> getVerticesAdjacentes(Vertice vertice) {
+    ArrayList<Vertice> getVerticesAdjacentes(Vertice vertice) {
         ArrayList<Vertice> verticesAdjacentes = new ArrayList<>();
         for (Aresta a : this.aresta) {
             if (a.vInicial.equals(vertice))
@@ -53,12 +54,12 @@ public class Grafo {
         return verticesAdjacentes;
     }
 
-    public void addAresta(Aresta aresta) {
+    void addAresta(Aresta aresta) {
         this.validarAresta(aresta);
         this.aresta.add(aresta);
     }
 
-    public void removeAresta(Aresta aresta) {
+    void removeAresta(Aresta aresta) {
         this.validarAresta(aresta);
         this.aresta.remove(aresta);
     }
@@ -75,6 +76,53 @@ public class Grafo {
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
+    }
+
+    Aresta getArestaPorNome(String nomeAresta) {
+        Aresta aNome = null;
+        for (Aresta a : this.aresta) {
+            if (a.getNomeAresta().equalsIgnoreCase(nomeAresta))
+                aNome = a;
+        }
+        return aNome;
+    }
+
+    ArrayList<Aresta> getArestasVertice(Vertice vertice) {
+        ArrayList<Aresta> arestas = new ArrayList<>();
+        for (Aresta a : this.aresta) {
+            if (a.vInicial.equals(vertice))
+                arestas.add(a);
+
+            if (a.vFinal.equals(vertice))
+                arestas.add(a);
+        }
+        return arestas;
+    }
+
+    void showMatrizAdjacente() {
+        StringJoiner matriz = new StringJoiner(System.lineSeparator());
+        StringBuilder string = new StringBuilder("  ");
+        this.vertice.forEach(v -> string.append(v.getNomeVertice()).append(" "));
+        matriz.add(string);
+
+        for (Vertice vLinha: this.vertice) {
+            StringBuilder linha = new StringBuilder(vLinha.getNomeVertice() + " ");
+            ArrayList<Aresta> arestasVertice = getArestasVertice(vLinha);
+
+            for (Vertice vColuna: this.vertice) {
+                arestasVertice.forEach(a -> {
+                    if(Boolean.TRUE.equals(a.vInicial.equals(vLinha) && a.vFinal.equals(vColuna) ||
+                            a.vFinal.equals(vLinha) && a.vInicial.equals(vColuna))) {
+                        linha.append("1 ");
+                    }
+                    else {
+                        linha.append("0 ");
+                    }
+                });
+            }
+            matriz.add(linha);
+        }
+        System.out.println(matriz);
     }
 }
 
