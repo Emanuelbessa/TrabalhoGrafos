@@ -30,7 +30,7 @@ public class Aresta {
     }
 
     public Boolean equals(final Aresta outraAresta) {
-        return  Objects.equals(this.vInicial, outraAresta.vInicial) &&
+        return Objects.equals(this.vInicial, outraAresta.vInicial) &&
                 Objects.equals(this.vFinal, outraAresta.vFinal) &&
                 Objects.equals(this.nomeAresta, outraAresta.nomeAresta);
     }

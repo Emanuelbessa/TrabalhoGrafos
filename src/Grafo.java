@@ -16,7 +16,7 @@ public class Grafo {
     }
 
     public void removeVertice(final Vertice vertice) {
-        if(!this.vertice.contains(vertice)){
+        if (!this.vertice.contains(vertice)) {
             System.err.println("Vértice não existe!");
         }
 
@@ -32,7 +32,7 @@ public class Grafo {
             if (a.vInicial.equals(vertice))
                 verticesAdjacentes.add(a.vFinal);
 
-            if(a.vFinal.equals(vertice))
+            if (a.vFinal.equals(vertice))
                 verticesAdjacentes.add(a.vInicial);
         }
         return verticesAdjacentes;
@@ -49,37 +49,18 @@ public class Grafo {
         this.aresta.remove(aresta);
     }
 
-
-
     private void validarAresta(Aresta aresta) {
-        if (aresta == null) {
-            throw new GrafoException("");
+        try {
+            if (!this.vertice.contains(aresta.getVInicial())) {
+                throw new Exception("Vértice inicial não existe no grafo!");
+            }
+
+            if (!this.vertice.contains(aresta.getVFinal())) {
+                throw new Exception("Vértice final não existe no grafo!");
+            }
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
         }
-
-        if (!this.vertice.containsKey(aresta.getVInicial())) {
-            throw new GrafoException("");
-        }
-
-        if (!this.vertice.containsKey(aresta.getVFinal())) {
-            throw new GrafoException("");
-        }
     }
-
-    Aresta getArestaPorNome(String nomeAresta) {
-        return this.getAllArestas().stream().filter(aresta -> aresta.getNomeAresta().equals(nomeAresta)).findFirst().orElse(null);
-    }
-
-    String getAllArestasString() {
-        StringJoiner strJoiner = new StringJoiner(" | ");
-        this.getAllArestas().forEach(aresta -> strJoiner.add(aresta.getNomeAresta()));
-        return sstrJoiner.toString();
-    }
-
-    private Set<Aresta> getAllArestas() {
-        return this.grafo.values().stream().flatMap(List::stream).collect(Collectors.toSet());
-    }
-
-
-
 }
 
