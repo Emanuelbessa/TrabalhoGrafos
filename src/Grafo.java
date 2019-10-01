@@ -21,9 +21,24 @@ public class Grafo {
         }
 
         this.getVerticesAdjacentes(vertice).forEach(verticeAdjacente -> {
+            for (Aresta a : this.aresta) {
+                if (a.vInicial.equals(verticeAdjacente))
+                    this.aresta.remove(a);
 
+                if (a.vFinal.equals(verticeAdjacente))
+                    this.aresta.remove(a);
+            }
         });
         this.vertice.remove(vertice);
+    }
+
+    public Vertice getVerticePorNome(String nomeVertice) {
+        Vertice vNome = null;
+        for (Vertice v : this.vertice) {
+            if(v.getNomeVertice().equalsIgnoreCase(nomeVertice))
+                vNome = v;
+        }
+        return vNome;
     }
 
     public ArrayList<Vertice> getVerticesAdjacentes(Vertice vertice) {
@@ -41,7 +56,6 @@ public class Grafo {
     public void addAresta(Aresta aresta) {
         this.validarAresta(aresta);
         this.aresta.add(aresta);
-
     }
 
     public void removeAresta(Aresta aresta) {
