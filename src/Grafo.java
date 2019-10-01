@@ -1,10 +1,17 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Grafo {
-    public ArrayList<Vertice> vertice = new ArrayList<Vertice>();
+    private ArrayList<Vertice> vertice;
+    private ArrayList<Aresta> aresta;
+    private Boolean dirigido;
 
-    public void addVertice(){
+    Grafo(final Boolean dirigido) {
+        this.vertice = new ArrayList<>();
+        this.aresta = new ArrayList<>();
+        this.dirigido = dirigido;
+    }
+
+    public void addVertice() {
 
     }
 }
