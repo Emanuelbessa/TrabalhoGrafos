@@ -25,12 +25,11 @@ public class Aresta {
         this.vFinal = vFinal;
     }
 
-    public void setNomeVertice(String nomeVertice) {
+    public void setNomeAresta(String nomeAresta) {
         this.nomeAresta = nomeAresta;
     }
 
     public Boolean equals(final Aresta outraAresta) {
-
         return  Objects.equals(this.vInicial, outraAresta.vInicial) &&
                 Objects.equals(this.vFinal, outraAresta.vFinal) &&
                 Objects.equals(this.nomeAresta, outraAresta.nomeAresta);
